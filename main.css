@@ -65,7 +65,7 @@ body {
   margin-top: 10px; 
   margin-left: 5px; 
   margin-right: 5px; 
-  font-size: 18px; 
+  font-size: 20px; 
   font-weight: 200; 
   line-height: inherit; 
   outline-width: thick; 
@@ -73,7 +73,7 @@ body {
   outline-color: #eeeeee; 
   color: #fffffff; 
   -webkit-border-radius: 200px; 
-  -moz-border-radius: 20px; 
+  -moz-border-radius: 200px; 
   border-radius: 200px;
 }
 
