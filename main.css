@@ -68,13 +68,13 @@ body {
   font-size: 18px; 
   font-weight: 200; 
   line-height: inherit; 
-  outline-width: thin; 
+  outline-width: thick; 
   outline-style: solid; 
   outline-color: #eeeeee; 
   color: #fffffff; 
-  -webkit-border-radius: 20px; 
+  -webkit-border-radius: 200px; 
   -moz-border-radius: 20px; 
-  border-radius: 20px;
+  border-radius: 200px;
 }
 
 /*
