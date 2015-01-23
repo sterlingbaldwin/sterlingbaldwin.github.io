@@ -62,9 +62,10 @@ body {
   padding: 20px 5px 20px 15px;
   outline-width: thin;
   outline-style: solid;
-  outline-color: #000000;
+  outline-color: #3951B3;
   border-radius: 20px;
   box-shadow: 10px 10px 5px #fff;
+  color: #3951B3;
 }
 
 
