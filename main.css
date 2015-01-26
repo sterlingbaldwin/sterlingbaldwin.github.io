@@ -21,6 +21,11 @@ a:hover {
 
 table {
   color: #3951B3;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th,td {
+  padding: 10px;
 }
 
 /*
