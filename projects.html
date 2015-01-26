@@ -10,53 +10,60 @@
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-default navbar-custom" role="navigation">
-  <div class="container">
-    <div class="nav-bar header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
-        <span class="sr-only">Toggle Navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Sterling</a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav navbar-left">
-        <li><a href="http://sterlingbaldwin.github.io/about.html">About</a></li>
-        <li><a href="http://sterlingbaldwin.github.io/work.html">Work</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">School <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li> <a href="srjc.html">Santa Rosa</a></li>
-            <li> <a href="chico.html">Chico</a></li>
-            <li> <a href="analy.html">Analy</a></li>
+  <div class="wrapper">
+    <nav class="navbar navbar-default navbar-custom" role="navigation">
+      <div class="container">
+        <div class="nav-bar header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false">
+            <span class="sr-only">Toggle Navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Sterling</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav navbar-left">
+            <li><a href="http://sterlingbaldwin.github.io/about.html">About</a></li>
+            <li><a href="http://sterlingbaldwin.github.io/work.html">Work</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">School <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li> <a href="srjc.html">Santa Rosa</a></li>
+                <li> <a href="chico.html">Chico</a></li>
+                <li> <a href="analy.html">Analy</a></li>
+              </ul>
+            </li>
+            <li class="active"><a href="http://sterlingbaldwin.github.io/projects.html">Projects</a></li>
+            <li><a href="http://sterlingbaldwin.github.io/blog.html">Blog</a></li>
           </ul>
-        </li>
-        <li class="active"><a href="http://sterlingbaldwin.github.io/projects.html">Projects</a></li>
-        <li><a href="http://sterlingbaldwin.github.io/blog.html">Blog</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="login">log in</a></li>
-      </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="login">log in</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1><font color="#3951B3">Sterling Baldwin</font></h1>
+        <p><font color="#3951B3">I, for one, welcome our new robot overlords</font></p> 
+      </div>
+      <img src="https://scontent-b.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/10372134_758455757536556_1231939905742001333_n.jpg?oh=3a1cc2d3c0fc72ad8db9e9e1586a190d&oe=555A41B8" alt="The GIR">
+      <div class="row">
+        <p><font color="#4CBB17">
+          Starting in the fall of 2013, Sterling worked as the lead programmer for the Intelligent Ground Vehicle project for the American Institute of Mechatronic Engineers. The project was to build a robotic platform that would be able to autonomously carry a 50kg payload through an obstacle course, knowing nothing about the course before hand except its target coordinates. The project uses a stereo camera vision system to image the robots surroundings and stay within the boundaries of the course, as well as identify and avoid the obstacles laied out in the course. The affectionally named Ground Intelligent Vehicle (GIR) used a Galil motion controller to drive two re-purposed wheel chair motors as its main drive system, and an Arduino GPS board for localization. For the vision system GIR uses the Point Cloud Library to hold and process the 3D images from the camera. Unfortunately I was forced to hand off the project at the beginning of the Spring ’15 semester after taking the internship at LLNL. 
+        </p>
+      </div>
     </div>
   </div>
-</nav>
-
-<div class="container">
-  <div class="jumbotron">
-    <h1><font color="#3951B3">Sterling Baldwin</font></h1>
-    <p><font color="#3951B3">I, for one, welcome our new robot overlords</font></p> 
-  </div>
-  <img src="https://scontent-b.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/10372134_758455757536556_1231939905742001333_n.jpg?oh=3a1cc2d3c0fc72ad8db9e9e1586a190d&oe=555A41B8" alt="The GIR">
-  <div class="row">
-    <p><font color="#4CBB17">
-      Starting in the fall of 2013, Sterling worked as the lead programmer for the Intelligent Ground Vehicle project for the American Institute of Mechatronic Engineers. The project was to build a robotic platform that would be able to autonomously carry a 50kg payload through an obstacle course, knowing nothing about the course before hand except its target coordinates. The project uses a stereo camera vision system to image the robots surroundings and stay within the boundaries of the course, as well as identify and avoid the obstacles laied out in the course. The affectionally named Ground Intelligent Vehicle (GIR) used a Galil motion controller to drive two re-purposed wheel chair motors as its main drive system, and an Arduino GPS board for localization. For the vision system GIR uses the Point Cloud Library to hold and process the 3D images from the camera. Unfortunately I was forced to hand off the project at the beginning of the Spring ’15 semester after taking the internship at LLNL. 
-    </p>
-  </div>
-</div>
+  <footer class="footer">
+    <div class="container">
+    <p class="text-muted">If infinite rednecks fired infinite shotguns at an infinite number of road signs, they'd eventually create all the worlds great literary in braille.</p>
+    </div>
+  </footer>
 </body>
 </html>
