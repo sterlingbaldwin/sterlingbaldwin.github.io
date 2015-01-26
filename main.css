@@ -19,7 +19,7 @@ a:hover {
   border: 1px solid #fff;
 }
 
-.navbar-custom .navbar-nav {
+.navbar-custom .navbar-nav > li > a {
   color:#3951B3;
 }
 
