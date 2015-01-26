@@ -24,6 +24,12 @@ a:hover {
 }
 
 p {
+  text-align: left;
+  color: #4CBB17;
+}
+
+h2 {
+  text-align: left;
   color: #4CBB17;
 }
 
