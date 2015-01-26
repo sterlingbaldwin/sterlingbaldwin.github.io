@@ -19,6 +19,10 @@ a:hover {
   border: 1px solid #fff;
 }
 
+.navbar {
+  color:#3951B3;
+}
+
 table {
   color: #5CE5FA;
   border: 1px solid black;
