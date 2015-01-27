@@ -39,6 +39,7 @@ table {
   border-collapse: collapse;
   text-align: left;
   table-layout: fixed;
+  vertical-align: top;
 }
 th,td {
   padding: 10px;
