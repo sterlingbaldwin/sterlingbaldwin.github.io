@@ -25,7 +25,7 @@ a:hover {
 
 p {
   text-align: left;
-  color: #4CBB17;
+  color: #3951B3;
 }
 
 h2 {
@@ -119,6 +119,7 @@ a:link {
     margin-right: -20px;
     padding-left: 20px;
     padding-right: 20px;
+    text-align: center;
   }
 }
 
