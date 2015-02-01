@@ -90,7 +90,9 @@ body {
   height: 4em;
 }
 
-
+a:link {
+  color: #f5f5f5;
+}
 
 /* Wrapper for page content to push down footer */
 #wrap {
