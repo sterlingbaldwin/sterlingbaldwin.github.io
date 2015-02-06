@@ -59,6 +59,199 @@
       </div>
       <div class="blog-post">
         <div class="jumbotron">
+          <h2 class="blog-post-title">Febuary 6, 2015</h2>
+          <p class="post">So for the last few days Ive been diving into some JavaScript in a big way. Since I havent <em>anything</em> with JS or jQuery at all before, there has been a bit of a learning curve! My part of the project has been to work on the front end of a large django web app for providing lots of cool info to users. At the end of last week we were given a mockup of the UI from the project lead, and Matt and I were a little intimidated by how fancy and flashy he wanted it to be. So for the last few days I've been banging my head against some JS trying to get a tiling window manager working. He's what Ive got so far!</p>
+          <div><button type="button" class="btn" id="spawn">Create New Window</button></div>
+          <div style="width: 500px; height: 300px; position: relative;" class="panel panel-primary contpanel" id="o-draggable"></div>
+          <script type="text/javascript">
+            $("body").ready(function() {
+  /*FIX THIS*/
+  panelArray = []; //access to each panel element
+  rowArray = []; //the number of cols in each row, with the index as the row and the value as the amount of cols in that row
+  /*DO NOT RELEASE*/
+  var gridSize = 12 * 4; //12 * X
+  var panelId = 0;
+  
+  var pixPerGrid = $('#o-draggable').width() / gridSize;
+
+  var config = {
+    id: function() {
+      return 'Panel_' + panelId++;
+    },
+    title: function() {
+      return 'Panel_' + ($('.jsPanel').length);
+    },
+    bootstrap: 'info',
+    position: 'center',
+    draggable: {
+      containment: '#o-draggable'
+    },
+    selector: '#o-draggable',
+    size: {
+      width: $('#o-draggable').width(),
+      height: $('#o-draggable').height() - 30,
+    }
+  };
+
+
+
+  $('#spawn').click(function() {  
+    if (rowArray.length == gridSize) {
+        return;
+    }
+    var panel = $.jsPanel(config);
+    panel.data('pos', {row: 0, col: 0});
+    panel.data('width', 0);
+    panel.data('height', 0);
+    panelArray.push(panel);
+    addPanel(panel);
+
+  });
+
+  function addPanel(curPanel) {
+    
+    var i = 0;
+    curPanel.find('.jsPanel-btn-close').mousedown(function() {
+      panelArray.splice(panelArray.indexOf(curPanel), 1);
+      removePanel(curPanel);
+    });
+
+
+    if (panelArray.length == 1) {
+      rowArray.push(1);
+      panelArray[0].data('pos', {
+        row: 0,
+        col: 0
+      });
+      panelArray[0].data('width', gridSize);
+      panelArray[0].data('height', gridSize);
+    } else {
+      //check to see if we need to create a new row
+      var maxCol = 1;
+      for (i = 0; i < rowArray.length; i++) {
+        if (rowArray[i] > maxCol) {
+          maxCol = rowArray[i];
+        }
+      }
+      if (maxCol > rowArray.length) {
+        //new row is needed
+        rowArray.push(0); //add the new row size to the rowArray
+
+      }
+
+      var smallestRow = rowArray[0];//index of the smallest row
+      var smallestSize = gridSize+1; //value of the smallest row
+      for (i = rowArray.length - 1; i >= 0; i--) { //find the index and length of the smallest row
+        if (rowArray[i] <= smallestSize) {
+          smallestRow = i;
+          smallestSize = rowArray[i];
+        }
+      }
+      
+      curPanel.data('pos', { //create 
+        row: smallestRow,
+        col: smallestSize,
+      });
+      rowArray[smallestRow] ++;
+      
+      var leftover = gridSize - (Math.floor(gridSize / rowArray[smallestRow]) * rowArray[smallestRow]); 
+      for (i = 0; i < panelArray.length; i++) {
+        if (panelArray[i].data('pos').row == smallestRow) {
+          panelArray[i].data('width', Math.floor(gridSize / rowArray[smallestRow]));
+          panelArray[i].data('height', Math.floor(gridSize / rowArray.length));
+          if (leftover > 0) {
+            panelArray[i].data('width', panelArray[i].data('width') + 1);
+            leftover--;
+          }
+        }
+        panelArray[i].width((panelArray[i].data('width') * pixPerGrid));
+        panelArray[i].height(curPanel.parent().height() / (rowArray.length));
+        
+      
+        if (panelArray[i].data('pos').col != 0) {
+          for(var j = 0; j < panelArray.length; j++) {
+            if ((panelArray[j].data('pos').row == panelArray[i].data('pos').row) && (panelArray[j].data('pos').col == (panelArray[i].data('pos').col -1 ) )) {
+              var offset = panelArray[j].offset();
+              break;
+            }
+          }
+          panelArray[i].offset({
+            left: offset.left+panelArray[i].width(), 
+            top: panelArray[i].parent().offset().top + (panelArray[i].data('pos').row * panelArray[i].height() ) });
+        } else if (panelArray[i].data('pos').col == 0 && panelArray[i].data('pos').row != 0) {
+          panelArray[i].offset({
+            top: panelArray[i].parent().offset().top + (panelArray[i].data('pos').row * panelArray[i].height() ) });
+        }
+      }
+      for (i = 0; i < rowArray.length; i++) {
+        if (rowArray[i] % 2 != 0 && rowArray[i] % 3 != 0 && rowArray[i] != 1) {
+          for (j = 0; j < panelArray.length; j++) {
+            if (panelArray[j].data('pos').row == i && (panelArray[j].data('pos').col+1) == rowArray[i]) {
+              panelArray[j].width(panelArray[j].width() + pixPerGrid);
+              break;;
+            }
+          }
+        }
+      }
+      
+    }
+  }
+
+  function removePanel(panel) {
+    var i = 0;
+    if( rowArray[panel.data('pos').row] == 1 ) { //check if its the only element in the row
+      console.log("removing row " + panel.data('pos').row);
+      rowArray.splice(panel.data('pos').row, 1);
+      if (panelArray.length == 0) {
+        return;
+      } else {
+        for (i = 0; i < panelArray.length; i++) {
+          panelArray[i].height(panel.parent().height() / (rowArray.length));
+          if(panel.data('pos').row < panelArray[i].data('pos').row) { //removed the row above (in the layout, actualy less in the row number)
+            panelArray[i].data('pos').row = panelArray[i].data('pos').row - 1;
+            panelArray[i].offset({top: panelArray[i].parent().offset().top + (panelArray[i].data('pos').row) * (panelArray[i].parent().height() / rowArray.length)})
+          } else { //removed the row below (in the layout, above in the row number)
+            if (panelArray[i].data('pos').row != 0) {
+              var oneUpRowOffset = 0;
+              for(var j = 0; j < panelArray.length; j++) {
+                if (panelArray[j].data('pos').row == panelArray[i].data('pos').row-1) {
+                  oneUpRowOffset = panelArray[j].offset();
+                  break;
+                }
+              }
+              panelArray[i].offset({
+                top: oneUpRowOffset.top + (panel.parent().height() / (rowArray.length))
+              });
+            }
+          }
+        }
+      }
+    } else {
+      console.log("removing col " + panel.data('pos').col + " from row " + panel.data('pos').row);
+      rowArray[panel.data('pos').row]--;
+      for(i = 0; i < panelArray.length; i++) {
+        if (panelArray[i].data('pos').row == panel.data('pos').row) {
+          panelArray[i].width(panelArray[i].parent().width() / rowArray[panel.data('pos').row]);
+          if (panelArray[i].data('pos').col > panel.data('pos').col) {
+            panelArray[i].data('pos', {
+              row: panelArray[i].data('pos').row, 
+              col: panelArray[i].data('pos').col - 1
+            });
+          }
+          panelArray[i].offset({
+            left: panelArray[i].parent().offset().left + panelArray[i].data('pos').col * (panelArray[i].parent().width() / (rowArray[panelArray[i].data('pos').row]))
+          });
+        }
+      }
+    }
+    panel.close();
+  }
+});
+          </script>
+          </div>
+      </div>
+      <div class="blog-post">
+        <div class="jumbotron">
           <h2 class="blog-post-title">Febuary 1, 2015</h2>
           <p class="post">I started using facebook way back in the day, probably sometime around '07 or '08. Back then it was much more a platform to allow you to talk to your friends, and connect with people you had lost track of. Since then it has turned into an advertising agency that gives all their data about you and your family directly to the NSA. <a href="http://saintsal.com/facebook/">This article</a>  does a much better job then I could do explaining why it just might be time to quit the site. Just like myspace before it, facebook has lost its charm, and its time to move on to the next social media website, hopefully one that values its users above spy agencies.</p>
           </div>
