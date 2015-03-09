@@ -3,7 +3,7 @@
 <head>
   <style>
   p.post {
-    color: #3951B3;
+    color: #132754;
   }
   </style>
   <title>Sterling's Blog</title>
@@ -17,8 +17,8 @@
   <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
   <script src="Data/jspanel/jquery.jspanel.js"></script>
   <script src="Data/js/jquery.gridster.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="Data/css/jquery.gridster.min.css">
-  <link href="Data/jspanel/jquery.jspanel.min.css" rel="stylesheet">
+  <!--<link rel="stylesheet" type="text/css" href="Data/css/jquery.gridster.min.css">
+  <link href="Data/jspanel/jquery.jspanel.min.css" rel="stylesheet">-->
 </head>
 <body>
   <div class="wrapper">
@@ -60,7 +60,7 @@
 
     <div class="container" id="webengine">
       <div class="jumbotron">
-        <h1><font color="#3951B3">Sterling Baldwin</font></h1>
+        <h1><font color="#132754">Sterling Baldwin</font></h1>
         <p class="text-center">I, for one, welcome our new robot overlords</p> 
       </div>
       
@@ -74,156 +74,8 @@
       <div class="blog-post">
         <div class="jumbotron">
           <h2>Febuary 17, 2015</h2>
-          <p>Im starting to work with gridster to improve the window layout. Im putting this here so I can play with it</p>
-          <div id='button_row'>
-            <button type="button" class="btn" id="provenance">Provenance Capture</button>
-            <button type="button" class="btn" id="status">Status Messages</button>
-            <button type="button" class="btn" id="science">Science Input</button>
-            <button type="button" class="btn" id="nodeList">Node List</button>
-            <button type="button" class="btn" id="heatMap">Heat Map</button>
-            <button type="button" class="btn" id="modelRun">Model Run</button>
-            <button type="button" class="btn" id="nodeSelect">Node Selector</button>
-            <button type="button" class="btn" id="cdat">CDATWeb Analysis</button>
-            <button type="button" class="btn" id="charting">Charting System Status</button>
-          </div>
-          <div class="demo">
-            <div class="gridster">
-              <ul>
-              </ul>
-            </div>
-          </div> 
-          <script type="text/javascript">
-          $('body').ready(function(){
-    
-          var gridster;
-          var maxCols = 6;
-
-            gridster = $(".gridster ul").gridster({
-                widget_margins: [10, 10],
-                widget_base_dimensions: [140, 140],
-                min_cols: 6,
-                resize: {
-                  enabled: true,
-                  stop: function(e, ui, $widget) {
-                    sizeFixup();
-                  }
-                },
-                draggable: {
-                  stop: function(e, ui, $widget) {
-                    sizeFixup();
-                  }
-                },
-            }).data('gridster');
-
-
-            $('#provenance').click(function(){
-                add_grid('provenance');
-              });
-            $('#status').click(function(){
-                add_grid('status');
-              });
-            $('#science').click(function(){
-                add_grid('science');
-              });
-            $('#nodeList').click(function(){
-                add_grid('nodeList');
-              });
-            $('#heatMap').click(function(){
-                add_grid('heatMap');
-              });
-            $('#modelRun').click(function(){
-                add_grid('modelRun');
-              });
-            $('#nodeSelect').click(function(){
-                add_grid('nodeSelect');
-              });
-            $('#cdat').click(function(){
-                add_grid('cdat');
-              });
-            $('#charting').click(function(){
-                add_grid('charting');
-              });
-            
-
-              function add_grid(name){
-                if($('#' + name + '_window').length == 0) {
-                  var widget = ['<li id=' + name + '_window>' + name + '</li>',1,1];
-                  gridster.add_widget.apply(gridster,widget);
-                  $("#" + name).bind
-                }
-                sizeFixup();
-              }
-
-              function sizeFixup() {
-                var i = 0;
-                var windows = $(".gs-w");
-                for(; i < windows.length; i++) {
-                  var nodesInCol = 1;
-                  var nodesInRow = 1;
-                  var j = 0;
-                  for(; j < windows.length; j++) { 
-                    if (i != j) {
-                      if( parseInt($(windows[i]).attr('data-row')) == parseInt($(windows[j]).attr('data-row')) 
-                          || ( parseInt($(windows[i]).attr('data-row'))-1 <= parseInt($(windows[j]).attr('data-row'))-2+parseInt($(windows[j]).attr('data-sizey')) 
-                              && parseInt($(windows[i]).attr('data-row')) >= parseInt($(windows[j]).attr('data-row')) ) ) 
-                      {
-                        //console.log($(windows[i]).attr('id') + " is in the same row as " + $(windows[j]).attr('id'));
-                        nodesInRow++;
-                      }
-                      if(parseInt($(windows[i]).attr('data-col')) == parseInt($(windows[j]).attr('data-col'))
-                          || (parseInt($(windows[i]).attr('data-col'))-1 <= parseInt($(windows[j]).attr('data-col'))-2+parseInt($(windows[j]).attr('data-sizex'))
-                              && parseInt($(windows[i]).attr('data-col')) >= parseInt($(windows[j]).attr('data-col')) ) ) 
-                      {
-                        //console.log($(windows[i]).attr('id') + " is in the same col as " + $(windows[j]).attr('id'));
-                        nodesInCol++;
-                      }
-                    }
-                  }
-                  console.log($(windows[i]).attr('id') + ' has ' + nodesInRow + ' other nodes in its row');
-                  console.log($(windows[i]).attr('id') + ' has ' + nodesInCol + ' other nodes in its col');
-                 // resize_widget($(windows[i]), )
-                  if ( ($(windows[i]).attr('data-col')-1) % (maxCols/nodesInRow) != 0 ) {
-                    console.log('moving ' + $(windows[i]).attr('id') + ' to ' + (parseInt($(windows[i]).attr('data-col'))+(Math.floor(maxCols/nodesInRow) - (parseInt($(windows[i]).attr('data-col'))-1)%Math.floor(maxCols/nodesInRow))));
-                    if (nodesInRow == 1) {
-                      var newCol = 1;
-                    } else {
-                      newCol = parseInt($(windows[i]).attr('data-col'))+(Math.floor(maxCols/nodesInRow) - (parseInt($(windows[i]).attr('data-col'))-1)%Math.floor(maxCols/nodesInRow));
-                    }
-                    gridster.mutate_widget_in_gridmap($(windows[i]), {
-                      size_x: parseInt($(windows[i]).attr('data-sizex')),
-                      size_y: parseInt($(windows[i]).attr('data-sizey')),
-                      col: parseInt($(windows[i]).attr('data-col')),
-                      row: parseInt($(windows[i]).attr('data-row'))
-                    }, {
-                      size_x: parseInt($(windows[i]).attr('data-sizex')),
-                      size_y: parseInt($(windows[i]).attr('data-sizey')),
-                      col: newCol,
-                      row: parseInt($(windows[i]).attr('data-row'))
-                    });
-                  }
-                  
-
-                }
-              }
-
-          });
-
-
-
-          /*
-
-          -> Provenance Capture
-          -> Staus Messages
-          -> Science Input
-          -> Heat Map
-          -> CDATWeb
-          -> ESGF Nodes
-          -> Model Run
-          -> Node Selector
-          -> Charting System Status
-
-          */
-          </script>
+          <p class="post"> Im starting to work with gridster to improve the window layout. <strike>Im putting this here so I can play with it</strike></p>
+          <p class="post"> edit: the version on this page was terrible. Check out the much more updated version <a href="http://acme-web-fe.ornl.gov/acme/grid">here</a></p>
         </div>
       </div>
       <div class="blog-post">
@@ -231,7 +83,8 @@
           <h2 class="blog-post-title">Febuary 6, 2015</h2>
           <p class="post">So for the last few days Ive been diving into some JavaScript in a big way. Since I havent done <em>anything</em> with JS or jQuery at all before, there has been a bit of a learning curve! My part of the project has been to work on the front end of a large django web app for providing lots of cool info to users. At the end of last week we were given a mockup of the UI from the project lead, and Matt and I were a little intimidated by how fancy and flashy he wanted it to be. So for the last few days I've been banging my head against some JS trying to get a tiling window manager working. Here's what Ive got so far! Note that its got some bugs in there . . .</p>
           <h3>Edit Feb 17, 2015</h3>
-          <p>Here is my latest version. It still has some bugs(translation: is buggy as all hell), but I think that moving to the Gridster library will help a lot</p>
+          <p class="post"><strike>Here is my latest version.</strike> It still has some bugs(translation: is buggy as all hell), but I think that moving to the Gridster library will help a lot</p>
+          <p class="post">edit: the css here is all messed up because the jspanel css was messing with the page and I had to remove it.</p>
           <div><button type="button" class="btn" id="spawn">Create New Window</button></div>
           <div style="width: 1000px; height: 700px; position: relative;" class="panel panel-primary contpanel" id="o-draggable"></div>
           <script type="text/javascript">
@@ -590,7 +443,6 @@
           });
           </script>
           </div>
-        </div>
       </div>
       <div class="blog-post">
         <div class="jumbotron">
