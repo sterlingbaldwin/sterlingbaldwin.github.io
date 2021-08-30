@@ -1,1 +1,0 @@
-# sterlingbaldwin.github.io
