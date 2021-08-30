@@ -1,0 +1,4 @@
+Sitemap: http://www.sterlingbaldwin.github.io/sitemapindex.xml
+
+User-Agent: *
+Host: www.sterlingbaldwin.github.io
